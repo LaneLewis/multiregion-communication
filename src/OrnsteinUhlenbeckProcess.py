@@ -13,8 +13,6 @@ def OrnsteinUhlenbeckProcessEuler(noiseCovariance,timeConstant,initialCondition,
         normalSample = np.expand_dims(normalSimulation[:,i],axis=1)
         #the stochastic component
         noise = np.squeeze(np.matmul(noiseMult,normalSample))
-        #issue may be that we arent multiplying correctly here
-        #sqrt t not time
         xs[:,i] = xs[:,i-1] + (-1*xs[:,i-1]/timeConstant)*timeDelta + noise*np.sqrt(timeDelta)/timeConstant
     return xs
 
